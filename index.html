@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOEL Jewelry | Visual Content Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #BFA37C;
+            --gold-light: #D4C4A8;
+            --gold-dark: #8B7355;
+            --black: #0A0A0A;
+            --black-soft: #1A1A1A;
+            --black-medium: #2D2D2D;
+            --white: #FFFFFF;
+            --white-off: #F9F7F4;
+            --grey: #8E8680;
+            --grey-light: #C4C4C4;
+            --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: var(--black);
+            color: var(--white);
+            min-height: 100vh;
+            direction: rtl;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: linear-gradient(180deg, var(--black) 0%, transparent 100%);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--gold);
+        }
+
+        .logo-subtitle {
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            color: var(--grey);
+            text-transform: uppercase;
+        }
+
+        .diamond-icon {
+            width: 24px;
+            height: 24px;
+            fill: var(--gold);
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Catalog Section */
+        .catalog-section {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            max-height: calc(100vh - 80px);
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold-dark), transparent);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            position: relative;
+            background: var(--black-soft);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-dark);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-card.selected {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(191, 163, 124, 0.3);
+        }
+
+        .product-card.selected::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background: var(--gold);
+            border-radius: 50%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            color: var(--black);
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 11;
+        }
+
+        .product-image-container {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--transition);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.08);
+        }
+
+        .product-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 60px 15px 15px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+        }
+
+        .product-title {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            width: 420px;
+            background: var(--black-soft);
+            border-right: 1px solid var(--black-medium);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            overflow-y: auto;
+            max-height: calc(100vh - 80px);
+        }
+
+        .dashboard-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--gold);
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--black-medium);
+        }
+
+        /* Selected Product Display */
+        .selected-product-display {
+            background: var(--black-medium);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s var(--transition);
+        }
+
+        .selected-product-display.has-product {
+            background: linear-gradient(135deg, var(--black-medium), var(--black-soft));
+            border: 1px solid var(--gold-dark);
+        }
+
+        .selected-product-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .selected-product-title {
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .selected-product-id {
+            font-size: 0.75rem;
+            color: var(--grey);
+        }
+
+        .no-selection-text {
+            color: var(--grey);
+            font-size: 0.9rem;
+        }
+
+        .no-selection-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.3;
+        }
+
+        /* Form Controls */
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-label {
+            font-size: 0.8rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 500;
+        }
+
+        .control-select {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--black-medium);
+            border: 1px solid var(--black-medium);
+            border-radius: 10px;
+            color: var(--white);
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23BFA37C' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 15px center;
+        }
+
+        .control-select:hover {
+            border-color: var(--gold-dark);
+        }
+
+        .control-select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(191, 163, 124, 0.1);
+        }
+
+        .control-select option {
+            background: var(--black-soft);
+            color: var(--white);
+            padding: 10px;
+        }
+
+        /* Generate Button */
+        .generate-button {
+            position: relative;
+            width: 100%;
+            padding: 18px 30px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border: none;
+            border-radius: 12px;
+            color: var(--black);
+            font-family: 'Heebo', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s var(--transition);
+            overflow: hidden;
+            margin-top: auto;
+        }
+
+        .generate-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s var(--transition);
+        }
+
+        .generate-button:hover::before {
+            left: 100%;
+        }
+
+        .generate-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(191, 163, 124, 0.4);
+        }
+
+        .generate-button:active {
+            transform: translateY(-1px);
+        }
+
+        .generate-button:disabled {
+            background: var(--grey);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .generate-button:disabled::before {
+            display: none;
+        }
+
+        .button-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .sparkle {
+            font-size: 1.3rem;
+        }
+
+        /* Status Message */
+        .status-message {
+            text-align: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            transition: all 0.3s var(--transition);
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-message.idle {
+            background: var(--black-medium);
+            color: var(--grey);
+        }
+
+        .status-message.loading {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+            color: var(--black);
+        }
+
+        .status-message.success {
+            background: rgba(76, 175, 80, 0.2);
+            color: #81c784;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+        }
+
+        .status-message.error {
+            background: rgba(244, 67, 54, 0.2);
+            color: #e57373;
+            border: 1px solid rgba(244, 67, 54, 0.3);
+        }
+
+        /* Loading Animation */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--black);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Search Box */
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            background: var(--black-soft);
+            border: 1px solid var(--black-medium);
+            border-radius: 10px;
+            color: var(--white);
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s var(--transition);
+        }
+
+        .search-input::placeholder {
+            color: var(--grey);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(191, 163, 124, 0.1);
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--black-soft);
+            border: 1px solid var(--black-medium);
+            border-radius: 20px;
+            color: var(--grey);
+            font-family: 'Heebo', sans-serif;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            color: var(--black);
+            border-color: var(--gold);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--black-medium);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                flex-direction: column-reverse;
+            }
+
+            .dashboard-section {
+                width: 100%;
+                max-height: none;
+                border-right: none;
+                border-top: 1px solid var(--black-medium);
+            }
+
+            .catalog-section {
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .logo-text {
+                font-size: 1.8rem;
+            }
+
+            .catalog-section,
+            .dashboard-section {
+                padding: 20px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <svg class="diamond-icon" viewBox="0 0 24 24">
+                <path d="M12 2L4 8L12 22L20 8L12 2Z M12 2L12 22 M4 8L20 8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M12 2L15 8L12 14L9 8L12 2Z" fill="currentColor" opacity="0.3"/>
+            </svg>
+            <div>
+                <div class="logo-text">JOEL</div>
+                <div class="logo-subtitle">Visual Content Studio</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Catalog Section -->
+        <section class="catalog-section">
+            <h2 class="section-title">קולקציית התכשיטים</h2>
+
+            <!-- Search -->
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="חיפוש תכשיט...">
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">הכל</button>
+                <button class="filter-btn" data-filter="טבעת">טבעות</button>
+                <button class="filter-btn" data-filter="שרשרת">שרשראות</button>
+                <button class="filter-btn" data-filter="עגיל">עגילים</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <aside class="dashboard-section">
+            <h2 class="dashboard-title">מרכז הפקודות</h2>
+
+            <!-- Selected Product Display -->
+            <div class="selected-product-display" id="selectedProductDisplay">
+                <div class="no-selection-icon">💎</div>
+                <div class="no-selection-text">בחר תכשיט מהקטלוג</div>
+            </div>
+
+            <!-- Control: Situation -->
+            <div class="control-group">
+                <label class="control-label">סיטואציה / סצנה</label>
+                <select class="control-select" id="situationSelect">
+                    <option value="">בחר סיטואציה...</option>
+                    <option value="Fine Dining">Fine Dining - מסעדת שף יוקרתית</option>
+                    <option value="Gallery Visit">Gallery Visit - גלריית אמנות</option>
+                    <option value="Shopping Day">Shopping Day - יום קניות</option>
+                    <option value="Morning Espresso">Morning Espresso - בית קפה</option>
+                    <option value="High-Tech Chic">High-Tech Chic - מגדל משרדים</option>
+                    <option value="Artistic Rooftop">Artistic Rooftop - גג בעיר</option>
+                    <option value="Business Lounge">Business Lounge - לאונג' עסקי</option>
+                    <option value="Evening Event">Evening Event - אירוע ערב</option>
+                    <option value="Urban Luxury">Urban Luxury - יוקרה עירונית</option>
+                    <option value="Parisian Chic">Parisian Chic - שיק פריזאי</option>
+                    <option value="Golden Jewelry Focus">Golden Jewelry Focus - פוקוס תכשיט</option>
+                    <option value="Cozy Winter">Cozy Winter - חורף חמים</option>
+                </select>
+            </div>
+
+            <!-- Control: Category -->
+            <div class="control-group">
+                <label class="control-label">קטגוריה</label>
+                <select class="control-select" id="categorySelect">
+                    <option value="">בחר קטגוריה...</option>
+                    <option value="Rings">טבעות</option>
+                    <option value="Necklaces">שרשראות</option>
+                    <option value="Earrings">עגילים</option>
+                    <option value="Bracelets">צמידים</option>
+                    <option value="Sets">סטים</option>
+                </select>
+            </div>
+
+            <!-- Control: Aspect Ratio -->
+            <div class="control-group">
+                <label class="control-label">יחס תמונה</label>
+                <select class="control-select" id="aspectRatioSelect">
+                    <option value="1:1">1:1 - ריבוע (Instagram Post)</option>
+                    <option value="4:5">4:5 - פורטרט (Instagram Portrait)</option>
+                    <option value="9:16">9:16 - סטורי (Stories/Reels)</option>
+                    <option value="16:9">16:9 - רחב (YouTube/Banner)</option>
+                </select>
+            </div>
+
+            <!-- Control: Creativity -->
+            <div class="control-group">
+                <label class="control-label">רמת יצירתיות</label>
+                <select class="control-select" id="creativitySelect">
+                    <option value="Low">נמוכה - קרוב למקור</option>
+                    <option value="Medium" selected>בינונית - מאוזן</option>
+                    <option value="High">גבוהה - יצירתי</option>
+                    <option value="Max">מקסימלית - ניסיוני</option>
+                </select>
+            </div>
+
+            <!-- Status Message -->
+            <div class="status-message idle" id="statusMessage">
+                💤 ממתין לפקודה...
+            </div>
+
+            <!-- Generate Button -->
+            <button class="generate-button" id="generateButton" disabled>
+                <span class="button-content">
+                    <span class="sparkle">✨</span>
+                    <span>Generate Image</span>
+                </span>
+            </button>
+        </aside>
+    </main>
+
+    <script>
+        // Product Data (loaded from CSV)
+        const PRODUCTS_DATA = [
+            {
+                "id": "gid://shopify/Product/9112402329854",
+                "title": "שרשרת \"שובל האור\" – בשיבוץ 0.56 קראט מואסנייט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Scfcbd173445645a590a0adc66c527f8eG_bd8fd135-3798-4710-8549-ce4811e202a0.webp?v=1768684371",
+                "model": "Victoria",
+                "situation": "High-Tech Chic"
+            },
+            {
+                "id": "gid://shopify/Product/9112402297086",
+                "title": "שרשרת צמד אורות – אלגנטיות כפולה 0.6 קראט מואסניט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sd4a3abf9087e4dd3b07f37533f6adf60O.webp?v=1768684371",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112402264318",
+                "title": "עגילי \"לומינוס\" – משובץ אבני מואסנייט 1.8 קראט לזוג",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Seca14590a9084182a3322c1ae5709218U.webp?v=1768684369",
+                "model": "Victoria",
+                "situation": "Shopping Day"
+            },
+            {
+                "id": "gid://shopify/Product/9112402231550",
+                "title": "שרשרת \"לייט-דרופס\" – 9 אבני מואסנייט 1.08 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S2e296f01aaa245cd99def9be5bbdd908m.webp?v=1768684369",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112402198782",
+                "title": "טבעת \"חמש האבנים\" – בשיבוץ מואסניט 0.6 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sd729ac042cdd4e08bc876ed19ae2185a1.webp?v=1768852107",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112402166014",
+                "title": "עגילים קלאסיים – בשיבוץ מואסנייט 2 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S3ed9f5dd8a6b4a4ab6490a0aed3aee49g.webp?v=1768852599",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112402133246",
+                "title": "טבעת חמשת הכוכבים – בשיבוץ מואסניט 0.7 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S069f00216c8d42abbbd4a65f8bf11b810.webp?v=1768853419",
+                "model": "Victoria",
+                "situation": "Fine Dining"
+            },
+            {
+                "id": "gid://shopify/Product/9112402034942",
+                "title": "עגילי סטאד – זוג אבני מואסנייט 0.8 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S26fb37e36f27481fa157af5a3c112f24y.webp?v=1768857090",
+                "model": "Victoria",
+                "situation": "Artistic Rooftop"
+            },
+            {
+                "id": "gid://shopify/Product/9112402002174",
+                "title": "עגילי חישוק – יוקרה על-זמנית ושיבוץ אבני מואסנייט 0.226 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S6f31762d9801476a9284172637c81825w.webp?v=1768684366",
+                "model": "Victoria",
+                "situation": "Shopping Day"
+            },
+            {
+                "id": "gid://shopify/Product/9112401969406",
+                "title": "עגילי קלאסיים – ניצוץ עדין של יוקרה – מואסנייט 0.06 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S2ab0f96e7be645b3b14b7bd598e0fd774.webp?v=1768684365",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401641726",
+                "title": "שרשרת Y בשיבוץ מואסנייט - 0.69 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sfd69a002c1a34ad48110ffd35730adf0t.webp?v=1768861798",
+                "model": "Victoria",
+                "situation": "Fine Dining"
+            },
+            {
+                "id": "gid://shopify/Product/9112401608958",
+                "title": "שרשרת תליון שלושת האבנים בשיבוץ מואסנייט – 1.85 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S862c9314248c49d1b7e259422eac9105c.webp?v=1768863173",
+                "model": "Victoria",
+                "situation": "Gallery Visit"
+            },
+            {
+                "id": "gid://shopify/Product/9112401576190",
+                "title": "עגילי U – בשיבוץ 0.16 קראט מואסנייט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S61d75eb7fb934021856b062df0e59718g.webp?v=1768684295",
+                "model": "Victoria",
+                "situation": "Morning Espresso"
+            },
+            {
+                "id": "gid://shopify/Product/9112401510654",
+                "title": "טבעת קוקטייל – שילוב מלכותי של מואסנייט ואמרלד 1 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sa5c2b90051cc48129b3e7b7b00092bfd3.webp?v=1768982591",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401477886",
+                "title": "טבעת טיפת קלאסית – ושיבוץ מואסנייט 0.6 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sab1eb508456847a4a7548d60686b40b7E.webp?v=1768983604",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401412350",
+                "title": "טבעת אמרלד מלכותית – בשיבוץ מואסנייט 1.78 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sc26ec239f04048ed80a8f5c7f0af93e3h.webp?v=1768983999",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401379582",
+                "title": "טבעת מרקיזה קלאסית – בשיבוץ מואסנייט 0.5 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S2a1cdf35b3574b4d8c2b2cdd11bc14d8V.webp?v=1768984297",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401346814",
+                "title": "טבעת כתר מלכותי – בשיבוץ מואסנייט 0.78 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S3a95a87c1af9486093e1e18a5b25b14dZ.webp?v=1768984585",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401314046",
+                "title": "טבעת אובל קלאסי – בשיבוץ מואסנייט 1 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S15a62d0a62b049368bba71dcb4d5eb77Y.webp?v=1768984984",
+                "model": "Victoria",
+                "situation": "Evening Event"
+            },
+            {
+                "id": "gid://shopify/Product/9112401281278",
+                "title": "טבעת סוליטר קלאסית – בשיבוץ מואסנייט 1 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S04e15b97d3414e7b981ca2ac4eaf3e66h.webp?v=1768985328",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401248510",
+                "title": "טבעת הנסיכה – בשיבוץ מואסנייט 1 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S59c5cf2f59bc4ee799f28ca0a4133faeW.webp?v=1768985641",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401215742",
+                "title": "טבעת השקיעה – בשיבוץ מואסנייט 0.79 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sf09f7bb85fdf48d19f77f37b8a41c54dR.webp?v=1768985892",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401182974",
+                "title": "טבעת הכתר – בשיבוץ מואסנייט 0.8 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sb61e6e3a42a7406db8f14cc2913a2e66q.webp?v=1768986174",
+                "model": "Victoria",
+                "situation": ""
+            },
+            {
+                "id": "gid://shopify/Product/9112401150206",
+                "title": "טבעת הנצחון – בשיבוץ מואסנייט 2.04 קראט",
+                "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S6c2b3caf5d824e15b26b6a2f98f34a2fC.webp?v=1768986428",
+                "model": "Victoria",
+                "situation": ""
+            }
+        ];
+
+        // Webhook URL
+        const WEBHOOK_URL = 'https://hook.eu2.make.com/y3ckr5lpv25147c4l5zi5r9wfyd6kmvl';
+
+        // State
+        let selectedProduct = null;
+        let filteredProducts = [...PRODUCTS_DATA];
+
+        // DOM Elements
+        const productGrid = document.getElementById('productGrid');
+        const selectedProductDisplay = document.getElementById('selectedProductDisplay');
+        const generateButton = document.getElementById('generateButton');
+        const statusMessage = document.getElementById('statusMessage');
+        const searchInput = document.getElementById('searchInput');
+        const situationSelect = document.getElementById('situationSelect');
+        const categorySelect = document.getElementById('categorySelect');
+        const aspectRatioSelect = document.getElementById('aspectRatioSelect');
+        const creativitySelect = document.getElementById('creativitySelect');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        // Initialize
+        function init() {
+            renderProducts(PRODUCTS_DATA);
+            setupEventListeners();
+        }
+
+        // Render Products
+        function renderProducts(products) {
+            productGrid.innerHTML = products.map(product => `
+                <div class="product-card" data-id="${product.id}" onclick="selectProduct('${product.id}')">
+                    <div class="product-image-container">
+                        <img class="product-image" src="${product.image}" alt="${product.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x300/1A1A1A/BFA37C?text=JOEL'">
+                        <div class="product-overlay">
+                            <div class="product-title">${product.title}</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Select Product
+        function selectProduct(productId) {
+            // Remove previous selection
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+
+            // Find and select product
+            selectedProduct = PRODUCTS_DATA.find(p => p.id === productId);
+
+            if (selectedProduct) {
+                // Mark card as selected
+                const selectedCard = document.querySelector(`[data-id="${productId}"]`);
+                if (selectedCard) {
+                    selectedCard.classList.add('selected');
+                }
+
+                // Update display
+                selectedProductDisplay.classList.add('has-product');
+                selectedProductDisplay.innerHTML = `
+                    <img class="selected-product-image" src="${selectedProduct.image}" alt="${selectedProduct.title}" onerror="this.src='https://via.placeholder.com/120x120/1A1A1A/BFA37C?text=JOEL'">
+                    <div class="selected-product-title">${selectedProduct.title}</div>
+                    <div class="selected-product-id">${selectedProduct.id.split('/').pop()}</div>
+                `;
+
+                // Pre-fill situation if available
+                if (selectedProduct.situation) {
+                    situationSelect.value = selectedProduct.situation;
+                }
+
+                // Enable generate button
+                generateButton.disabled = false;
+            }
+        }
+
+        // Setup Event Listeners
+        function setupEventListeners() {
+            // Search
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                filteredProducts = PRODUCTS_DATA.filter(p =>
+                    p.title.toLowerCase().includes(query)
+                );
+                renderProducts(filteredProducts);
+            });
+
+            // Filter buttons
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+                    if (filter === 'all') {
+                        filteredProducts = [...PRODUCTS_DATA];
+                    } else {
+                        filteredProducts = PRODUCTS_DATA.filter(p =>
+                            p.title.includes(filter)
+                        );
+                    }
+                    renderProducts(filteredProducts);
+                });
+            });
+
+            // Generate button
+            generateButton.addEventListener('click', generateImage);
+        }
+
+        // Generate Image
+        async function generateImage() {
+            if (!selectedProduct) {
+                setStatus('error', 'נא לבחור תכשיט תחילה');
+                return;
+            }
+
+            const situation = situationSelect.value;
+            if (!situation) {
+                setStatus('error', 'נא לבחור סיטואציה');
+                return;
+            }
+
+            // Disable button and show loading
+            generateButton.disabled = true;
+            generateButton.innerHTML = `
+                <span class="button-content">
+                    <span class="loading-spinner"></span>
+                    <span>מעבד...</span>
+                </span>
+            `;
+            setStatus('loading', '⚙️ שולח פקודה...');
+
+            // Prepare payload
+            const payload = {
+                source: 'Web_App',
+                product_id: selectedProduct.id,
+                product: selectedProduct.title,
+                scene: situation,
+                category: categorySelect.value || '',
+                aspect_ratio: aspectRatioSelect.value || '1:1',
+                creativity: creativitySelect.value || 'Medium',
+                command: 'Studio_Generate'
+            };
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    setStatus('success', '✅ הפקודה נשלחה בהצלחה!');
+                } else {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                setStatus('error', `❌ שגיאה: ${error.message}`);
+            } finally {
+                // Reset button
+                generateButton.disabled = false;
+                generateButton.innerHTML = `
+                    <span class="button-content">
+                        <span class="sparkle">✨</span>
+                        <span>Generate Image</span>
+                    </span>
+                `;
+            }
+        }
+
+        // Set Status Message
+        function setStatus(type, message) {
+            statusMessage.className = `status-message ${type}`;
+            statusMessage.textContent = message;
+        }
+
+        // Initialize app
+        init();
+    </script>
+</body>
+</html>
