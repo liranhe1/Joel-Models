@@ -3,1191 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOEL Jewelry | Visual Content Studio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>JOEL Studio | Visual Content Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #BFA37C;
-            --gold-light: #D4C4A8;
-            --gold-dark: #8B7355;
-            --black: #0A0A0A;
-            --black-soft: #1A1A1A;
-            --black-medium: #2D2D2D;
-            --white: #FFFFFF;
-            --white-off: #F9F7F4;
-            --grey: #8E8680;
-            --grey-light: #C4C4C4;
+            --gold: #d4af37;
+            --gold-light: #f4e4bc;
+            --black: #0a0a0a;
+            --black-card: rgba(20,20,20,0.85);
+            --white: #fff;
+            --grey: #888;
             --emerald: #50C878;
-            --emerald-dark: #2E8B57;
-            --transition: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Heebo', sans-serif;
-            background-color: var(--black);
-            color: var(--white);
-            min-height: 100vh;
-            direction: rtl;
-        }
-
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            background: linear-gradient(180deg, var(--black) 0%, rgba(10,10,10,0.95) 100%);
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            font-weight: 300;
-            letter-spacing: 0.3em;
-            color: var(--gold);
-        }
-
-        .logo-subtitle {
-            font-size: 0.65rem;
-            letter-spacing: 0.4em;
-            color: var(--grey);
-            text-transform: uppercase;
-        }
-
-        .diamond-icon {
-            width: 24px;
-            height: 24px;
-            fill: var(--gold);
-        }
-
-        /* Main Layout */
-        .main-container {
-            display: flex;
-            min-height: 100vh;
-            padding-top: 70px;
-        }
-
-        /* Catalog Section */
-        .catalog-section {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-            height: calc(100vh - 70px);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            font-weight: 300;
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .collection-badge {
-            font-size: 0.7rem;
-            padding: 4px 12px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .collection-badge.moissanite {
-            background: var(--gold);
-            color: var(--black);
-        }
-
-        .collection-badge.emerald {
-            background: var(--emerald);
-            color: var(--black);
-        }
-
-        /* Model Toggle */
-        .model-toggle-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .model-toggle {
-            display: flex;
-            background: var(--black-medium);
-            border-radius: 25px;
-            padding: 4px;
-            position: relative;
-        }
-
-        .model-toggle-btn {
-            padding: 10px 24px;
-            border: none;
-            background: transparent;
-            color: var(--grey);
-            font-family: 'Heebo', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            border-radius: 20px;
-            transition: all 0.3s var(--transition);
-            position: relative;
-            z-index: 1;
-        }
-
-        .model-toggle-btn.active {
-            color: var(--black);
-        }
-
-        .model-toggle-btn.active.victoria {
-            background: var(--gold);
-        }
-
-        .model-toggle-btn.active.alma {
-            background: var(--emerald);
-        }
-
-        /* Search & Filters */
-        .controls-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .search-container {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 18px;
-            background: var(--black-soft);
-            border: 1px solid var(--black-medium);
-            border-radius: 10px;
-            color: var(--white);
-            font-family: 'Heebo', sans-serif;
-            font-size: 0.9rem;
-            transition: all 0.3s var(--transition);
-        }
-
-        .search-input::placeholder {
-            color: var(--grey);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 10px 18px;
-            background: var(--black-soft);
-            border: 1px solid var(--black-medium);
-            border-radius: 8px;
-            color: var(--grey);
-            font-family: 'Heebo', sans-serif;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s var(--transition);
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: var(--gold);
-            color: var(--black);
-            border-color: var(--gold);
-        }
-
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 16px;
-        }
-
-        .product-card {
-            position: relative;
-            background: var(--black-soft);
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s var(--transition);
-            border: 2px solid transparent;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold-dark);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .product-card.selected {
-            border-color: var(--gold);
-            box-shadow: 0 0 25px rgba(191, 163, 124, 0.4);
-        }
-
-        .product-card.selected::after {
-            content: '✓';
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 24px;
-            height: 24px;
-            background: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--black);
-            font-size: 12px;
-            font-weight: bold;
-            z-index: 10;
-        }
-
-        .product-image-container {
-            aspect-ratio: 1;
-            overflow: hidden;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s var(--transition);
-        }
-
-        .product-card:hover .product-image {
-            transform: scale(1.08);
-        }
-
-        .product-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 40px 12px 12px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-        }
-
-        .product-title {
-            font-size: 0.75rem;
-            font-weight: 400;
-            color: var(--white);
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .product-row-badge {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: rgba(0,0,0,0.7);
-            color: var(--gold);
-            font-size: 0.65rem;
-            padding: 3px 8px;
-            border-radius: 4px;
-        }
-
-        /* Dashboard Section */
-        .dashboard-section {
-            width: 380px;
-            background: var(--black-soft);
-            border-right: 1px solid var(--black-medium);
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 70px);
-            overflow: hidden;
-        }
-
-        .dashboard-scroll {
-            flex: 1;
-            overflow-y: auto;
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .dashboard-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: var(--gold);
-            text-align: center;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--black-medium);
-        }
-
-        /* Selected Product Display */
-        .selected-product-display {
-            background: var(--black-medium);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            min-height: 160px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.4s var(--transition);
-        }
-
-        .selected-product-display.has-product {
-            background: linear-gradient(135deg, var(--black-medium), var(--black-soft));
-            border: 1px solid var(--gold-dark);
-        }
-
-        .selected-product-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 10px;
-            object-fit: cover;
-            margin-bottom: 10px;
-            border: 2px solid var(--gold);
-        }
-
-        .selected-product-title {
-            font-size: 0.85rem;
-            color: var(--white);
-            margin-bottom: 4px;
-            line-height: 1.3;
-        }
-
-        .selected-product-id {
-            font-size: 0.7rem;
-            color: var(--grey);
-        }
-
-        .no-selection-text {
-            color: var(--grey);
-            font-size: 0.85rem;
-        }
-
-        .no-selection-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            opacity: 0.3;
-        }
-
-        /* Form Controls */
-        .control-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .control-label {
-            font-size: 0.75rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
-        }
-
-        .control-select {
-            width: 100%;
-            padding: 12px 15px;
-            background: var(--black-medium);
-            border: 1px solid var(--black-medium);
-            border-radius: 8px;
-            color: var(--white);
-            font-family: 'Heebo', sans-serif;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all 0.3s var(--transition);
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23BFA37C' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: left 12px center;
-        }
-
-        .control-select:hover {
-            border-color: var(--gold-dark);
-        }
-
-        .control-select:focus {
-            outline: none;
-            border-color: var(--gold);
-        }
-
-        .control-select option {
-            background: var(--black-soft);
-            color: var(--white);
-        }
-
-        /* Scene Categories */
-        .scene-category-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-        }
-
-        .scene-category-btn {
-            padding: 12px 10px;
-            background: var(--black-medium);
-            border: 1px solid var(--black-medium);
-            border-radius: 8px;
-            color: var(--grey);
-            font-family: 'Heebo', sans-serif;
-            font-size: 0.75rem;
-            cursor: pointer;
-            transition: all 0.3s var(--transition);
-            text-align: center;
-        }
-
-        .scene-category-btn:hover {
-            border-color: var(--gold-dark);
-            color: var(--white);
-        }
-
-        .scene-category-btn.active {
-            background: var(--gold);
-            color: var(--black);
-            border-color: var(--gold);
-        }
-
-        .scene-category-btn .icon {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-        }
-
-        /* Dashboard Footer - Fixed */
-        .dashboard-footer {
-            padding: 20px 25px;
-            background: var(--black-soft);
-            border-top: 1px solid var(--black-medium);
-        }
-
-        /* Status Message */
-        .status-message {
-            text-align: center;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            margin-bottom: 12px;
-            min-height: 42px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .status-message.idle {
-            background: var(--black-medium);
-            color: var(--grey);
-        }
-
-        .status-message.loading {
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: var(--black);
-        }
-
-        .status-message.success {
-            background: rgba(76, 175, 80, 0.2);
-            color: #81c784;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-
-        .status-message.error {
-            background: rgba(244, 67, 54, 0.2);
-            color: #e57373;
-            border: 1px solid rgba(244, 67, 54, 0.3);
-        }
-
-        /* Generate Button */
-        .generate-button {
-            width: 100%;
-            padding: 16px 24px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            border: none;
-            border-radius: 10px;
-            color: var(--black);
-            font-family: 'Heebo', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .generate-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.6s var(--transition);
-        }
-
-        .generate-button:hover::before {
-            left: 100%;
-        }
-
-        .generate-button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(191, 163, 124, 0.4);
-        }
-
-        .generate-button:disabled {
-            background: var(--grey);
-            cursor: not-allowed;
-        }
-
-        .generate-button:disabled::before {
-            display: none;
-        }
-
-        .button-content {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .loading-spinner {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: 2px solid var(--black);
-            border-top-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Recent Creations */
-        .recent-creations {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid var(--black-medium);
-        }
-
-        .recent-title {
-            font-size: 0.75rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .recent-title .pulse {
-            width: 8px;
-            height: 8px;
-            background: var(--emerald);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .recent-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-        }
-
-        .recent-item {
-            aspect-ratio: 1;
-            border-radius: 8px;
-            overflow: hidden;
-            background: var(--black-medium);
-            position: relative;
-        }
-
-        .recent-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .recent-item.empty {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--grey);
-            font-size: 0.6rem;
-        }
-
-        .recent-item .status-dot {
-            position: absolute;
-            bottom: 4px;
-            right: 4px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .recent-item .status-dot.pending {
-            background: var(--gold);
-            animation: pulse 1s infinite;
-        }
-
-        .recent-item .status-dot.complete {
-            background: var(--emerald);
-        }
-
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--black);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--black-medium);
-            border-radius: 3px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--gold-dark);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .main-container {
-                flex-direction: column-reverse;
-            }
-
-            .dashboard-section {
-                width: 100%;
-                height: auto;
-                max-height: 50vh;
-            }
-
-            .catalog-section {
-                height: auto;
-                min-height: 50vh;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .header {
-                padding: 12px 15px;
-            }
-
-            .logo-text {
-                font-size: 1.6rem;
-            }
-
-            .catalog-section {
-                padding: 15px;
-            }
-
-            .dashboard-scroll {
-                padding: 15px;
-            }
-
-            .dashboard-footer {
-                padding: 15px;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .scene-category-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+            --glass: rgba(255,255,255,0.05);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Heebo',sans-serif; background:var(--black); color:var(--white); min-height:100vh; direction:rtl; }
+
+        .header { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(10,10,10,0.95); padding:12px 20px; display:flex; justify-content:space-between; align-items:center; backdrop-filter:blur(10px); border-bottom:1px solid rgba(212,175,55,0.2); }
+        .logo { font-size:1.8rem; font-weight:300; letter-spacing:0.2em; color:var(--gold); }
+        .model-toggle { display:flex; gap:8px; }
+        .model-btn { padding:8px 16px; border:1px solid var(--gold); background:transparent; color:var(--gold); cursor:pointer; font-family:inherit; font-size:0.85rem; transition:all 0.3s; border-radius:4px; }
+        .model-btn.active { background:var(--gold); color:var(--black); }
+        .collection-badge { padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:600; }
+        .badge-moissanite { background:var(--gold); color:var(--black); }
+        .badge-emerald { background:var(--emerald); color:var(--black); }
+
+        .main { display:flex; flex-direction:column; padding-top:60px; min-height:100vh; }
+
+        .steps-nav { display:flex; justify-content:center; gap:10px; padding:15px; background:var(--black-card); border-bottom:1px solid rgba(212,175,55,0.1); flex-wrap:wrap; }
+        .step-btn { padding:10px 20px; background:var(--glass); border:1px solid rgba(212,175,55,0.3); color:var(--grey); cursor:pointer; font-family:inherit; font-size:0.9rem; border-radius:6px; transition:all 0.3s; }
+        .step-btn.active { background:var(--gold); color:var(--black); border-color:var(--gold); }
+        .step-btn:hover { border-color:var(--gold); }
+
+        .step-panel { display:none; flex:1; overflow-y:auto; }
+        .step-panel.active { display:block; }
+
+        .studio-layout { display:grid; grid-template-columns:1fr 320px; gap:20px; padding:20px; min-height:calc(100vh - 140px); }
+        @media(max-width:900px) { .studio-layout { grid-template-columns:1fr; } }
+
+        .catalog { background:var(--black-card); border-radius:12px; padding:15px; border:1px solid rgba(212,175,55,0.1); }
+        .catalog-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px; }
+        .catalog-title { font-size:1.1rem; color:var(--gold); }
+        .catalog-count { font-size:0.85rem; color:var(--grey); }
+        .products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:12px; max-height:calc(100vh - 280px); overflow-y:auto; padding:5px; }
+        @media(max-width:600px) { .products-grid { grid-template-columns:repeat(2,1fr); max-height:50vh; } }
+        .product-card { background:var(--glass); border:2px solid transparent; border-radius:8px; overflow:hidden; cursor:pointer; transition:all 0.3s; }
+        .product-card:hover { border-color:rgba(212,175,55,0.5); transform:translateY(-2px); }
+        .product-card.selected { border-color:var(--gold); box-shadow:0 0 20px rgba(212,175,55,0.3); }
+        .product-img { width:100%; aspect-ratio:1; object-fit:cover; background:#1a1a1a; }
+        .product-info { padding:8px; }
+        .product-title { font-size:0.75rem; color:var(--white); line-height:1.3; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+        .product-row { font-size:0.65rem; color:var(--grey); margin-top:4px; }
+
+        .dashboard { background:var(--black-card); border-radius:12px; padding:20px; border:1px solid rgba(212,175,55,0.1); display:flex; flex-direction:column; height:fit-content; position:sticky; top:80px; }
+        @media(max-width:900px) { .dashboard { position:relative; top:0; } }
+        .dash-section { margin-bottom:20px; }
+        .dash-label { font-size:0.8rem; color:var(--grey); margin-bottom:8px; display:block; }
+        .dash-value { font-size:0.95rem; color:var(--white); padding:10px; background:var(--glass); border-radius:6px; min-height:40px; }
+        .scene-categories { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+        .scene-cat-btn { padding:10px; background:var(--glass); border:1px solid rgba(212,175,55,0.2); color:var(--grey); cursor:pointer; font-family:inherit; font-size:0.8rem; border-radius:6px; transition:all 0.3s; }
+        .scene-cat-btn.active { background:rgba(212,175,55,0.2); color:var(--gold); border-color:var(--gold); }
+        select { width:100%; padding:10px; background:var(--glass); border:1px solid rgba(212,175,55,0.3); color:var(--white); font-family:inherit; font-size:0.9rem; border-radius:6px; cursor:pointer; }
+        select option { background:var(--black); }
+        .generate-btn { width:100%; padding:14px; background:linear-gradient(135deg,var(--gold),#b8972e); border:none; color:var(--black); font-family:inherit; font-size:1rem; font-weight:600; border-radius:8px; cursor:pointer; transition:all 0.3s; margin-top:auto; }
+        .generate-btn:hover { transform:translateY(-2px); box-shadow:0 5px 20px rgba(212,175,55,0.4); }
+        .generate-btn:disabled { opacity:0.5; cursor:not-allowed; transform:none; }
+
+        .copywriter-layout { padding:20px; max-width:800px; margin:0 auto; }
+        .result-frame { background:var(--black-card); border-radius:12px; border:1px solid rgba(212,175,55,0.2); overflow:hidden; margin-bottom:20px; }
+        .result-placeholder { width:100%; aspect-ratio:1; display:flex; align-items:center; justify-content:center; background:#111; color:var(--grey); flex-direction:column; gap:10px; }
+        .shimmer { background:linear-gradient(90deg,#111 25%,#222 50%,#111 75%); background-size:200% 100%; animation:shimmer 1.5s infinite; }
+        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+        .result-actions { padding:15px; display:flex; gap:10px; flex-wrap:wrap; }
+        .action-btn { flex:1; min-width:150px; padding:12px; border:none; font-family:inherit; font-size:0.9rem; font-weight:500; border-radius:8px; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:8px; }
+        .btn-caption { background:linear-gradient(135deg,#4a90d9,#357abd); color:white; }
+        .btn-telegram { background:linear-gradient(135deg,#0088cc,#006699); color:white; }
+        .btn-instagram { background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color:white; opacity:0.5; cursor:not-allowed; }
+        .caption-box { background:var(--glass); border:1px solid rgba(212,175,55,0.2); border-radius:8px; padding:15px; margin-top:15px; }
+        .caption-text { width:100%; min-height:120px; background:transparent; border:none; color:var(--white); font-family:inherit; font-size:0.95rem; line-height:1.6; resize:vertical; }
+        .caption-text:focus { outline:none; }
+
+        .distribution-layout { padding:20px; max-width:600px; margin:0 auto; text-align:center; }
+        .final-preview { background:var(--black-card); border-radius:12px; padding:20px; border:1px solid rgba(212,175,55,0.2); }
+        .distribution-btns { display:flex; flex-direction:column; gap:10px; }
+        .dist-btn { padding:14px 20px; border:none; font-family:inherit; font-size:1rem; font-weight:500; border-radius:8px; cursor:pointer; transition:all 0.3s; }
+
+        .status-bar { padding:10px 15px; background:rgba(212,175,55,0.1); border-radius:6px; margin-top:10px; font-size:0.85rem; color:var(--gold); text-align:center; display:none; }
+        .status-bar.visible { display:block; }
+        .status-bar.error { background:rgba(255,0,0,0.1); color:#ff6b6b; }
+        .status-bar.success { background:rgba(80,200,120,0.1); color:var(--emerald); }
+
+        .loading-spinner { width:40px; height:40px; border:3px solid var(--glass); border-top-color:var(--gold); border-radius:50%; animation:spin 1s linear infinite; }
+        @keyframes spin { to{transform:rotate(360deg)} }
+
+        ::-webkit-scrollbar { width:6px; }
+        ::-webkit-scrollbar-track { background:var(--black); }
+        ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:3px; }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
-        <div class="logo">
-            <svg class="diamond-icon" viewBox="0 0 24 24">
-                <path d="M12 2L4 8L12 22L20 8L12 2Z M12 2L12 22 M4 8L20 8" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                <path d="M12 2L15 8L12 14L9 8L12 2Z" fill="currentColor" opacity="0.3"/>
-            </svg>
-            <div>
-                <div class="logo-text">JOEL</div>
-                <div class="logo-subtitle">Visual Content Studio</div>
-            </div>
-        </div>
-        <div class="model-toggle-container">
+        <div class="logo">JOEL</div>
+        <div style="display:flex;align-items:center;gap:15px;">
             <div class="model-toggle">
-                <button class="model-toggle-btn victoria active" data-model="Victoria" onclick="setModel('Victoria')">
-                    Victoria
-                </button>
-                <button class="model-toggle-btn alma" data-model="Alma" onclick="setModel('Alma')">
-                    Alma
-                </button>
+                <button class="model-btn active" data-model="Victoria">Victoria</button>
+                <button class="model-btn" data-model="Alma">Alma</button>
             </div>
+            <span class="collection-badge badge-moissanite" id="collectionBadge">MOISSANITE</span>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="main-container">
-        <!-- Catalog Section -->
-        <section class="catalog-section">
-            <div class="section-header">
-                <div class="section-title">
-                    קולקציית התכשיטים
-                    <span class="collection-badge moissanite" id="collectionBadge">MOISSANITE</span>
-                </div>
-                <div class="product-count" id="productCount" style="color: var(--grey); font-size: 0.85rem;">108 פריטים</div>
-            </div>
+    <main class="main">
+        <nav class="steps-nav">
+            <button class="step-btn active" data-step="1">1. Studio</button>
+            <button class="step-btn" data-step="2">2. Copywriter</button>
+            <button class="step-btn" data-step="3">3. Distribution</button>
+        </nav>
 
-            <div class="controls-row">
-                <div class="search-container">
-                    <input type="text" class="search-input" id="searchInput" placeholder="חיפוש תכשיט...">
+        <section class="step-panel active" id="step1">
+            <div class="studio-layout">
+                <div class="catalog">
+                    <div class="catalog-header">
+                        <span class="catalog-title">Product Catalog</span>
+                        <span class="catalog-count" id="productCount">108 products</span>
+                    </div>
+                    <div class="products-grid" id="productsGrid"></div>
                 </div>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">הכל</button>
-                    <button class="filter-btn" data-filter="טבעת">טבעות</button>
-                    <button class="filter-btn" data-filter="שרשרת">שרשראות</button>
-                    <button class="filter-btn" data-filter="עגיל">עגילים</button>
-                    <button class="filter-btn" data-filter="צמיד">צמידים</button>
+                <div class="dashboard">
+                    <div class="dash-section">
+                        <span class="dash-label">Selected Product</span>
+                        <div class="dash-value" id="selectedProduct">Select a product...</div>
+                    </div>
+                    <div class="dash-section">
+                        <span class="dash-label">Scene Category</span>
+                        <div class="scene-categories" id="sceneCategories">
+                            <button class="scene-cat-btn" data-cat="lifestyle">Lifestyle</button>
+                            <button class="scene-cat-btn" data-cat="evening">Evening</button>
+                            <button class="scene-cat-btn" data-cat="urban">Urban</button>
+                            <button class="scene-cat-btn" data-cat="artistic">Artistic</button>
+                        </div>
+                        <select id="sceneSelect" disabled><option value="">Select category first...</option></select>
+                    </div>
+                    <div class="dash-section">
+                        <span class="dash-label">Aspect Ratio</span>
+                        <select id="aspectRatio">
+                            <option value="1:1">1:1 Square</option>
+                            <option value="9:16">9:16 Story</option>
+                            <option value="16:9">16:9 Wide</option>
+                            <option value="4:5">4:5 Portrait</option>
+                        </select>
+                    </div>
+                    <button class="generate-btn" id="generateBtn" disabled>Generate Image</button>
+                    <div class="status-bar" id="statusBar"></div>
                 </div>
             </div>
-
-            <div class="product-grid" id="productGrid"></div>
         </section>
 
-        <!-- Dashboard Section -->
-        <aside class="dashboard-section">
-            <div class="dashboard-scroll">
-                <h2 class="dashboard-title">מרכז הפקודות</h2>
-
-                <!-- Selected Product Display -->
-                <div class="selected-product-display" id="selectedProductDisplay">
-                    <div class="no-selection-icon">💎</div>
-                    <div class="no-selection-text">בחר תכשיט מהקטלוג</div>
-                </div>
-
-                <!-- Scene Category Selection -->
-                <div class="control-group">
-                    <label class="control-label">קטגוריית סצנה</label>
-                    <div class="scene-category-grid" id="sceneCategoryGrid">
-                        <button class="scene-category-btn" data-category="lifestyle" onclick="setSceneCategory('lifestyle')">
-                            <span class="icon">☕</span>
-                            Lifestyle
-                        </button>
-                        <button class="scene-category-btn" data-category="evening" onclick="setSceneCategory('evening')">
-                            <span class="icon">🌙</span>
-                            Evening
-                        </button>
-                        <button class="scene-category-btn" data-category="urban" onclick="setSceneCategory('urban')">
-                            <span class="icon">🏙️</span>
-                            Urban
-                        </button>
-                        <button class="scene-category-btn" data-category="artistic" onclick="setSceneCategory('artistic')">
-                            <span class="icon">🎨</span>
-                            Artistic
-                        </button>
+        <section class="step-panel" id="step2">
+            <div class="copywriter-layout">
+                <div class="result-frame">
+                    <div class="result-placeholder" id="resultImage">
+                        <div class="loading-spinner" style="display:none" id="imageSpinner"></div>
+                        <span id="imagePlaceholder">Generate an image in Step 1</span>
+                    </div>
+                    <div class="result-actions">
+                        <button class="action-btn btn-caption" id="captionBtn" disabled>📝 Generate Marketing Post</button>
+                        <button class="action-btn btn-telegram" id="telegramBtn" disabled>🚀 Send to Telegram</button>
+                        <button class="action-btn btn-instagram" disabled>📸 Instagram (Soon)</button>
                     </div>
                 </div>
-
-                <!-- Specific Scene -->
-                <div class="control-group">
-                    <label class="control-label">סצנה ספציפית</label>
-                    <select class="control-select" id="sceneSelect">
-                        <option value="">בחר קטגוריה קודם...</option>
-                    </select>
+                <div class="caption-box" id="captionBox" style="display:none">
+                    <textarea class="caption-text" id="captionText" placeholder="Marketing text will appear here..."></textarea>
                 </div>
-
-                <!-- Aspect Ratio -->
-                <div class="control-group">
-                    <label class="control-label">יחס תמונה</label>
-                    <select class="control-select" id="aspectRatioSelect">
-                        <option value="1:1">1:1 - ריבוע (Instagram Post)</option>
-                        <option value="4:5">4:5 - פורטרט (Instagram Portrait)</option>
-                        <option value="9:16">9:16 - סטורי (Stories/Reels)</option>
-                        <option value="16:9">16:9 - רחב (YouTube/Banner)</option>
-                    </select>
-                </div>
-
-                <!-- Creativity -->
-                <div class="control-group">
-                    <label class="control-label">רמת יצירתיות</label>
-                    <select class="control-select" id="creativitySelect">
-                        <option value="Low">נמוכה - קרוב למקור</option>
-                        <option value="Medium" selected>בינונית - מאוזן</option>
-                        <option value="High">גבוהה - יצירתי</option>
-                    </select>
-                </div>
-
-                <!-- Recent Creations -->
-                <div class="recent-creations">
-                    <div class="recent-title">
-                        <span class="pulse"></span>
-                        יצירות אחרונות
-                    </div>
-                    <div class="recent-grid" id="recentGrid">
-                        <div class="recent-item empty">ממתין...</div>
-                        <div class="recent-item empty">ממתין...</div>
-                        <div class="recent-item empty">ממתין...</div>
-                    </div>
-                </div>
+                <div class="status-bar" id="step2Status"></div>
             </div>
+        </section>
 
-            <!-- Fixed Footer -->
-            <div class="dashboard-footer">
-                <div class="status-message idle" id="statusMessage">
-                    ממתין לפקודה...
+        <section class="step-panel" id="step3">
+            <div class="distribution-layout">
+                <div class="final-preview">
+                    <h2 style="color:var(--gold);margin-bottom:20px;">Ready to Publish</h2>
+                    <div id="finalContent"><p style="color:var(--grey);">Complete Steps 1 & 2 first</p></div>
+                    <div class="distribution-btns" style="margin-top:20px;">
+                        <button class="dist-btn btn-telegram" id="finalTelegram" disabled>🚀 Publish to Telegram</button>
+                        <button class="dist-btn btn-instagram" disabled>📸 Instagram (Coming Soon)</button>
+                    </div>
                 </div>
-                <button class="generate-button" id="generateButton" disabled>
-                    <span class="button-content">
-                        <span>✨</span>
-                        <span>Generate Image</span>
-                    </span>
-                </button>
+                <div class="status-bar" id="step3Status"></div>
             </div>
-        </aside>
+        </section>
     </main>
 
+    <script src="products_verified.js"></script>
     <script>
-        // Scene Categories with detailed scenes
-        const SCENE_CATEGORIES = {
-            lifestyle: {
-                name: 'Lifestyle',
-                scenes: [
-                    { value: 'Morning Espresso', label: 'Morning Espresso - בית קפה מעוצב' },
-                    { value: 'Shopping Day', label: 'Shopping Day - יום קניות יוקרתי' },
-                    { value: 'Cozy Winter', label: 'Cozy Winter - אווירה חורפית חמימה' },
-                    { value: 'Friday Vibe', label: 'Friday Vibe - אווירת סוף שבוע' },
-                    { value: 'Parisian Chic', label: 'Parisian Chic - שיק פריזאי' }
-                ]
-            },
-            evening: {
-                name: 'Evening & Events',
-                scenes: [
-                    { value: 'Fine Dining', label: 'Fine Dining - מסעדת שף יוקרתית' },
-                    { value: 'Evening Event', label: 'Evening Event - אירוע ערב' },
-                    { value: 'Urban Luxury / Night', label: 'Urban Night - לילה עירוני' },
-                    { value: 'Rainy Night Noir', label: 'Rainy Night - לילה גשום' },
-                    { value: 'Business Lounge', label: 'Business Lounge - לאונג\' עסקי' }
-                ]
-            },
-            urban: {
-                name: 'Urban & Modern',
-                scenes: [
-                    { value: 'High-Tech Chic', label: 'High-Tech Chic - מגדל משרדים' },
-                    { value: 'Gallery Visit', label: 'Gallery Visit - גלריית אמנות' },
-                    { value: 'Golden Jewelry Focus', label: 'Golden Focus - פוקוס תכשיט' },
-                    { value: 'Urban Luxury', label: 'Urban Luxury - יוקרה עירונית' }
-                ]
-            },
-            artistic: {
-                name: 'Artistic & Creative',
-                scenes: [
-                    { value: 'Artistic Rooftop', label: 'Artistic Rooftop - גג אמנותי' },
-                    { value: 'Studio Shot', label: 'Studio Shot - צילום סטודיו' },
-                    { value: 'Minimalist', label: 'Minimalist - מינימליסטי' },
-                    { value: 'Editorial', label: 'Editorial - עריכה מגזינית' }
-                ]
-            }
+        const WEBHOOK_IMAGE = 'https://hook.eu2.make.com/y3ckr5lpv25147c4l5zi5r9wfyd6kmvl';
+        const WEBHOOK_CAPTION = 'https://hook.eu2.make.com/rseu4bjldsj15cm12wx0otg620ahrv67';
+
+        const SCENES = {
+            lifestyle: [
+                { value: 'Morning Espresso,בית קפה מעוצב בנווה צדק', label: 'Morning Espresso - בית קפה מעוצב' },
+                { value: 'Shopping Day,קניון רמת אביב / כיכר המדינה', label: 'Shopping Day - קניון יוקרתי' },
+                { value: 'Friday Vibe,סיבוב בשוק הפשפשים/יפו', label: 'Friday Vibe - שוק הפשפשים' },
+                { value: 'Cozy Winter,קירות עץ חשופים, שטיח פרווה.', label: 'Cozy Winter - אווירה חמימה' }
+            ],
+            evening: [
+                { value: 'Fine Dining,מסעדת שף יוקרתית (לילה)', label: 'Fine Dining - מסעדת שף' },
+                { value: 'Evening Event,השקת מותג / אירוע נוצץ', label: 'Evening Event - אירוע יוקרתי' },
+                { value: 'Business Lounge,מלון יוקרה בתל אביב', label: 'Business Lounge - מלון יוקרה' }
+            ],
+            urban: [
+                { value: 'High-Tech Chic,לובי של מגדל משרדים בתל אביב', label: 'High-Tech Chic - מגדל משרדים' },
+                { value: 'Gallery Visit,גלריית אמנות מודרנית', label: 'Gallery Visit - גלריית אמנות' },
+                { value: 'Parisian Chic,בית קפה אירופאי קלאסי', label: 'Parisian Chic - סגנון פריזאי' }
+            ],
+            artistic: [
+                { value: 'Artistic Rooftop,סטודיו על גג בדרום העיר', label: 'Artistic Rooftop - סטודיו על גג' },
+                { value: 'Rainy Night Noir,תחת פנס רחוב בלילה גשום.', label: 'Rainy Night - לילה גשום' },
+                { value: 'Golden Jewelry Focus,קלוז-אפ ברכב יוקרה', label: 'Golden Focus - רכב יוקרה' },
+                { value: 'Urban Luxury / Night,רחוב רטוב עם אורות ניאון', label: 'Urban Luxury - אורות ניאון' }
+            ]
         };
 
-        // Product Data - All products from CSV
-        const PRODUCTS_DATA = [
-            {"id": "gid://shopify/Product/9112402329854", "title": "שרשרת \"שובל האור\" – בשיבוץ 0.56 קראט מואסנייט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Scfcbd173445645a590a0adc66c527f8eG_bd8fd135-3798-4710-8549-ce4811e202a0.webp?v=1768684371", "model": "Victoria", "collection": "moissanite", "situation": "High-Tech Chic", "rowNumber": 2},
-            {"id": "gid://shopify/Product/9112402297086", "title": "שרשרת צמד אורות – אלגנטיות כפולה 0.6 קראט מואסניט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sd4a3abf9087e4dd3b07f37533f6adf60O.webp?v=1768684371", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 3},
-            {"id": "gid://shopify/Product/9112402264318", "title": "עגילי \"לומינוס\" – משובץ אבני מואסנייט 1.8 קראט לזוג", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Seca14590a9084182a3322c1ae5709218U.webp?v=1768684369", "model": "Victoria", "collection": "moissanite", "situation": "Shopping Day", "rowNumber": 4},
-            {"id": "gid://shopify/Product/9112402231550", "title": "שרשרת \"לייט-דרופס\" – 9 אבני מואסנייט 1.08 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S2e296f01aaa245cd99def9be5bbdd908m.webp?v=1768684369", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 5},
-            {"id": "gid://shopify/Product/9112402198782", "title": "טבעת \"חמש האבנים\" – בשיבוץ מואסניט 0.6 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sd729ac042cdd4e08bc876ed19ae2185a1.webp?v=1768852107", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 6},
-            {"id": "gid://shopify/Product/9112402166014", "title": "עגילים קלאסיים – בשיבוץ מואסנייט 2 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S3ed9f5dd8a6b4a4ab6490a0aed3aee49g.webp?v=1768852599", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 7},
-            {"id": "gid://shopify/Product/9112402133246", "title": "טבעת חמשת הכוכבים – בשיבוץ מואסניט 0.7 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S069f00216c8d42abbbd4a65f8bf11b810.webp?v=1768853419", "model": "Victoria", "collection": "moissanite", "situation": "Fine Dining", "rowNumber": 8},
-            {"id": "gid://shopify/Product/9112402034942", "title": "עגילי סטאד – זוג אבני מואסנייט 0.8 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S26fb37e36f27481fa157af5a3c112f24y.webp?v=1768857090", "model": "Victoria", "collection": "moissanite", "situation": "Artistic Rooftop", "rowNumber": 9},
-            {"id": "gid://shopify/Product/9112402002174", "title": "עגילי חישוק – יוקרה על-זמנית 0.226 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S6f31762d9801476a9284172637c81825w.webp?v=1768684366", "model": "Victoria", "collection": "moissanite", "situation": "Shopping Day", "rowNumber": 10},
-            {"id": "gid://shopify/Product/9112401969406", "title": "עגילי קלאסיים – ניצוץ עדין של יוקרה", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S2ab0f96e7be645b3b14b7bd598e0fd774.webp?v=1768684365", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 11},
-            {"id": "gid://shopify/Product/9112401641726", "title": "שרשרת Y בשיבוץ מואסנייט 0.69 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sfd69a002c1a34ad48110ffd35730adf0t.webp?v=1768861798", "model": "Victoria", "collection": "moissanite", "situation": "Fine Dining", "rowNumber": 12},
-            {"id": "gid://shopify/Product/9112401608958", "title": "שרשרת תליון שלושת האבנים 1.85 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S862c9314248c49d1b7e259422eac9105c.webp?v=1768863173", "model": "Victoria", "collection": "moissanite", "situation": "Gallery Visit", "rowNumber": 13},
-            {"id": "gid://shopify/Product/9112401576190", "title": "עגילי U – בשיבוץ 0.16 קראט מואסנייט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S61d75eb7fb934021856b062df0e59718g.webp?v=1768684295", "model": "Victoria", "collection": "moissanite", "situation": "Morning Espresso", "rowNumber": 14},
-            {"id": "gid://shopify/Product/9112401510654", "title": "טבעת קוקטייל – שילוב מלכותי של מואסנייט ואמרלד 1 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sa5c2b90051cc48129b3e7b7b00092bfd3.webp?v=1768982591", "model": "Alma", "collection": "emerald", "situation": "", "rowNumber": 15},
-            {"id": "gid://shopify/Product/9112401477886", "title": "טבעת טיפת קלאסית – מואסנייט 0.6 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sab1eb508456847a4a7548d60686b40b7E.webp?v=1768983604", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 16},
-            {"id": "gid://shopify/Product/9112401412350", "title": "טבעת קוקטייל \"סקלטון\" מואסנייט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sb74fc59856804b679b7efca3367182238.webp?v=1768984148", "model": "Victoria", "collection": "moissanite", "situation": "Shopping Day", "rowNumber": 17},
-            {"id": "gid://shopify/Product/9112401379582", "title": "טבעת קלאסיק 1 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S4edc1735d5f64f568048810e0ed5473dS.webp?v=1768985005", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 18},
-            {"id": "gid://shopify/Product/9112391778558", "title": "צמיד \"הזוהר הצפוני\" – מואסנייט 3.6 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S337a04209b4d4650b8920fe15d6a0e22L.webp?v=1768680742", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 19},
-            {"id": "gid://shopify/Product/8216682529022", "title": "שרשרת מואסניט 1 עד 3 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/1321211.png?v=1706807124", "model": "Victoria", "collection": "moissanite", "situation": "Parisian Chic", "rowNumber": 20},
-            {"id": "gid://shopify/Product/8123947548926", "title": "שרשרת לב משובצת אבני מואסניט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/main-image-111_df318b60-1875-4338-90d3-80eedebcbbd7.png?v=1740848809", "model": "Victoria", "collection": "moissanite", "situation": "Cozy Winter", "rowNumber": 21},
-            {"id": "gid://shopify/Product/8123911995646", "title": "טבעת מעוצבת משובצת אבני מואסניט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S06042d9a1eb94cbc974454f7d9541c3aq.webp?v=1748711520", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 22},
-            {"id": "gid://shopify/Product/8123911766270", "title": "עגילי סוליטר פרימיום 1 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sa25c795423d74d719372145fdbec452c0.webp?v=1746945547", "model": "Victoria", "collection": "moissanite", "situation": "Friday Vibe", "rowNumber": 23},
-            {"id": "gid://shopify/Product/8123911733502", "title": "שרשרת עם אבני מואסניט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S306053a30b344735b2eb08fdf0bebd97E.webp?v=1746119182", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 24},
-            {"id": "gid://shopify/Product/8123911700734", "title": "טבעת יוקרתית אבן מרכזית 1 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/1080x1080_d3b7eb80-47ec-4fa7-bc54-64b7c7f4ca4b.png?v=1746119183", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 25},
-            {"id": "gid://shopify/Product/8123911635198", "title": "עגילי חישוק עם אבני מואסניט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S0786fb9ed2a64cc196cab453b1b6736fh.webp?v=1748797548", "model": "Victoria", "collection": "moissanite", "situation": "Morning Espresso", "rowNumber": 26},
-            {"id": "gid://shopify/Product/8123911602430", "title": "טבעת 1.5 קראט מואסניט רוז וזהב", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/variant-image-gem-color-with-certificate-111.jpg?v=1740848810", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 27},
-            {"id": "gid://shopify/Product/8123911569662", "title": "טבעת יוקרתית מואסניט 1 קראט זהב", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S49b9f6d5c10841348aa588ecbe17859d2.webp?v=1748797549", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 28},
-            {"id": "gid://shopify/Product/8123911471358", "title": "שרשרת מואסניט מעוצבת 0.5 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sed628921bbaa49ca8188aa0d01a14763F.webp?v=1748797550", "model": "Victoria", "collection": "moissanite", "situation": "Morning Espresso", "rowNumber": 31},
-            {"id": "gid://shopify/Product/8123911373054", "title": "טבעת X משובצת אבני מואסניט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S72c3e240dbfb4a0ca116c30c8bf0c1b24.webp?v=1748797550", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 32},
-            {"id": "gid://shopify/Product/8123910750462", "title": "צמיד טניס יוקרתי מואסניט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/main-image-1111_d5b16c17-5762-4d2a-bf79-a7b4428462c4.png?v=1730480696", "model": "Victoria", "collection": "moissanite", "situation": "Rainy Night Noir", "rowNumber": 40},
-            {"id": "gid://shopify/Product/8099648504062", "title": "שרשרת V עם אבני מואסניט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S24021a0203dc4e788950a0d3776f9e0fO.jpg?v=1693587918", "model": "Victoria", "collection": "moissanite", "situation": "Cozy Winter", "rowNumber": 47},
-            {"id": "gid://shopify/Product/8096782876926", "title": "שרשרת מואסניט 1 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/H0a7b81717d9840bd964294d7631d9abbM.jpg?v=1690909535", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 48},
-            {"id": "gid://shopify/Product/8096775667966", "title": "שרשרת Pear Cut כסף 925", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/H3932a70bd43f46aaa09b0008f3feebf3w.jpg?v=1690909536", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 49},
-            {"id": "gid://shopify/Product/8096775635198", "title": "עגילי מואסניט ריבוע 0.8 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Hdb619a847a3441c2b1ad3cbf547dfd9ew.jpg?v=1690909535", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 50},
-            {"id": "gid://shopify/Product/8096775536894", "title": "עגילים צמודים מואסניט עד 3 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S4d6bc7533e8c4faebdba1aaaa7bb8f5cd.jpg?v=1690909535", "model": "Victoria", "collection": "moissanite", "situation": "", "rowNumber": 51},
-            // Emerald Collection - Alma
-            {"id": "gid://shopify/Product/emerald001", "title": "עגילי הילה אמרלד – יוקרה על-זמנית", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sa5c2b90051cc48129b3e7b7b00092bfd3.webp?v=1768982591", "model": "Alma", "collection": "emerald", "situation": "Evening Event", "rowNumber": 100},
-            {"id": "gid://shopify/Product/emerald002", "title": "שרשרת גיאומטרית אמרלד 0.6 קראט", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sab1eb508456847a4a7548d60686b40b7E.webp?v=1768983604", "model": "Alma", "collection": "emerald", "situation": "Gallery Visit", "rowNumber": 101},
-            {"id": "gid://shopify/Product/emerald003", "title": "טבעת ברקת אמרלד חיתוך ריבוע", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/Sb74fc59856804b679b7efca3367182238.webp?v=1768984148", "model": "Alma", "collection": "emerald", "situation": "Fine Dining", "rowNumber": 102},
-            {"id": "gid://shopify/Product/emerald004", "title": "צמיד אמרלד קלאסי", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S337a04209b4d4650b8920fe15d6a0e22L.webp?v=1768680742", "model": "Alma", "collection": "emerald", "situation": "Urban Luxury", "rowNumber": 103},
-            {"id": "gid://shopify/Product/emerald005", "title": "עגילי אמרלד טיפה", "image": "https://cdn.shopify.com/s/files/1/0657/8723/2510/files/S069f00216c8d42abbbd4a65f8bf11b810.webp?v=1768853419", "model": "Alma", "collection": "emerald", "situation": "Parisian Chic", "rowNumber": 104}
-        ];
-
-        // Webhook URL
-        const WEBHOOK_URL = 'https://hook.eu2.make.com/y3ckr5lpv25147c4l5zi5r9wfyd6kmvl';
-
-        // State
-        let selectedProduct = null;
         let selectedModel = 'Victoria';
-        let selectedSceneCategory = null;
-        let filteredProducts = [...PRODUCTS_DATA];
-        let recentCreations = [];
+        let selectedProduct = null;
+        let selectedScene = '';
 
-        // DOM Elements
-        const productGrid = document.getElementById('productGrid');
-        const selectedProductDisplay = document.getElementById('selectedProductDisplay');
-        const generateButton = document.getElementById('generateButton');
-        const statusMessage = document.getElementById('statusMessage');
-        const searchInput = document.getElementById('searchInput');
-        const sceneSelect = document.getElementById('sceneSelect');
-        const aspectRatioSelect = document.getElementById('aspectRatioSelect');
-        const creativitySelect = document.getElementById('creativitySelect');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const collectionBadge = document.getElementById('collectionBadge');
+        const productsGrid = document.getElementById('productsGrid');
         const productCount = document.getElementById('productCount');
-        const recentGrid = document.getElementById('recentGrid');
+        const collectionBadge = document.getElementById('collectionBadge');
+        const selectedProductEl = document.getElementById('selectedProduct');
+        const sceneSelect = document.getElementById('sceneSelect');
+        const generateBtn = document.getElementById('generateBtn');
+        const statusBar = document.getElementById('statusBar');
+        const captionBtn = document.getElementById('captionBtn');
+        const telegramBtn = document.getElementById('telegramBtn');
+        const captionBox = document.getElementById('captionBox');
+        const captionText = document.getElementById('captionText');
 
-        // Initialize
         function init() {
-            filterByModel();
+            renderProducts();
             setupEventListeners();
-            startPolling();
         }
 
-        // Set Model (Victoria/Alma)
-        function setModel(model) {
-            selectedModel = model;
-
-            // Update toggle buttons
-            document.querySelectorAll('.model-toggle-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.model === model) {
-                    btn.classList.add('active');
-                }
+        function renderProducts() {
+            const filtered = PRODUCTS_DATA.filter(p => {
+                if (selectedModel === 'Victoria') return p.collection === 'Moissanite';
+                return p.collection === 'Emerald';
             });
 
-            // Update collection badge
-            if (model === 'Victoria') {
-                collectionBadge.textContent = 'MOISSANITE';
-                collectionBadge.className = 'collection-badge moissanite';
-            } else {
-                collectionBadge.textContent = 'EMERALD';
-                collectionBadge.className = 'collection-badge emerald';
-            }
-
-            // Clear selection
-            selectedProduct = null;
-            updateSelectedDisplay();
-            generateButton.disabled = true;
-
-            // Filter products
-            filterByModel();
-        }
-
-        // Filter by Model
-        function filterByModel() {
-            const collection = selectedModel === 'Victoria' ? 'moissanite' : 'emerald';
-            filteredProducts = PRODUCTS_DATA.filter(p => p.collection === collection);
-
-            // Apply search filter if exists
-            const query = searchInput.value.toLowerCase();
-            if (query) {
-                filteredProducts = filteredProducts.filter(p =>
-                    p.title.toLowerCase().includes(query)
-                );
-            }
-
-            // Apply type filter
-            const activeFilter = document.querySelector('.filter-btn.active');
-            if (activeFilter && activeFilter.dataset.filter !== 'all') {
-                filteredProducts = filteredProducts.filter(p =>
-                    p.title.includes(activeFilter.dataset.filter)
-                );
-            }
-
-            renderProducts(filteredProducts);
-            productCount.textContent = `${filteredProducts.length} פריטים`;
-        }
-
-        // Render Products
-        function renderProducts(products) {
-            productGrid.innerHTML = products.map(product => `
-                <div class="product-card ${selectedProduct?.id === product.id ? 'selected' : ''}"
-                     data-id="${product.id}"
-                     onclick="selectProduct('${product.id}')">
-                    <span class="product-row-badge">#${product.rowNumber}</span>
-                    <div class="product-image-container">
-                        <img class="product-image"
-                             src="${product.image}"
-                             alt="${product.title}"
-                             loading="lazy"
-                             onerror="this.src='https://via.placeholder.com/300x300/1A1A1A/BFA37C?text=JOEL'">
-                        <div class="product-overlay">
-                            <div class="product-title">${product.title}</div>
-                        </div>
+            productCount.textContent = `${filtered.length} products`;
+            productsGrid.innerHTML = filtered.map(p => `
+                <div class="product-card" data-id="${p.id}" data-row="${p.rowNumber}">
+                    <img class="product-img" src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%231a1a1a%22 width=%22100%22 height=%22100%22/></svg>'">
+                    <div class="product-info">
+                        <div class="product-title">${p.title}</div>
+                        <div class="product-row">Row ${p.rowNumber}</div>
                     </div>
                 </div>
             `).join('');
-        }
 
-        // Select Product
-        function selectProduct(productId) {
             document.querySelectorAll('.product-card').forEach(card => {
-                card.classList.remove('selected');
+                card.addEventListener('click', () => selectProduct(card.dataset.id));
             });
+        }
 
+        function selectProduct(productId) {
             selectedProduct = PRODUCTS_DATA.find(p => p.id === productId);
-
-            if (selectedProduct) {
-                const selectedCard = document.querySelector(`[data-id="${productId}"]`);
-                if (selectedCard) {
-                    selectedCard.classList.add('selected');
-                }
-
-                updateSelectedDisplay();
-                generateButton.disabled = false;
-
-                // Pre-fill scene if available
-                if (selectedProduct.situation) {
-                    // Find which category contains this scene
-                    for (const [catKey, catData] of Object.entries(SCENE_CATEGORIES)) {
-                        const scene = catData.scenes.find(s => s.value === selectedProduct.situation);
-                        if (scene) {
-                            setSceneCategory(catKey);
-                            setTimeout(() => {
-                                sceneSelect.value = selectedProduct.situation;
-                            }, 100);
-                            break;
-                        }
-                    }
-                }
-            }
+            document.querySelectorAll('.product-card').forEach(c => c.classList.remove('selected'));
+            document.querySelector(`[data-id="${productId}"]`)?.classList.add('selected');
+            selectedProductEl.textContent = selectedProduct ? selectedProduct.title : 'Select a product...';
+            updateGenerateBtn();
         }
 
-        // Update Selected Display
-        function updateSelectedDisplay() {
-            if (selectedProduct) {
-                selectedProductDisplay.classList.add('has-product');
-                selectedProductDisplay.innerHTML = `
-                    <img class="selected-product-image" src="${selectedProduct.image}" alt="${selectedProduct.title}" onerror="this.src='https://via.placeholder.com/80x80/1A1A1A/BFA37C?text=JOEL'">
-                    <div class="selected-product-title">${selectedProduct.title}</div>
-                    <div class="selected-product-id">Row: ${selectedProduct.rowNumber} | ${selectedProduct.model}</div>
-                `;
-            } else {
-                selectedProductDisplay.classList.remove('has-product');
-                selectedProductDisplay.innerHTML = `
-                    <div class="no-selection-icon">💎</div>
-                    <div class="no-selection-text">בחר תכשיט מהקטלוג</div>
-                `;
-            }
-        }
-
-        // Set Scene Category
-        function setSceneCategory(category) {
-            selectedSceneCategory = category;
-
-            // Update category buttons
-            document.querySelectorAll('.scene-category-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if (btn.dataset.category === category) {
-                    btn.classList.add('active');
-                }
-            });
-
-            // Populate scene select
-            const scenes = SCENE_CATEGORIES[category]?.scenes || [];
-            sceneSelect.innerHTML = `<option value="">בחר סצנה...</option>` +
-                scenes.map(s => `<option value="${s.value}">${s.label}</option>`).join('');
-        }
-
-        // Setup Event Listeners
         function setupEventListeners() {
-            // Search
-            searchInput.addEventListener('input', filterByModel);
-
-            // Filter buttons
-            filterButtons.forEach(btn => {
+            document.querySelectorAll('.model-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    filterButtons.forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.model-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
-                    filterByModel();
+                    selectedModel = btn.dataset.model;
+                    collectionBadge.textContent = selectedModel === 'Victoria' ? 'MOISSANITE' : 'EMERALD';
+                    collectionBadge.className = 'collection-badge ' + (selectedModel === 'Victoria' ? 'badge-moissanite' : 'badge-emerald');
+                    selectedProduct = null;
+                    selectedProductEl.textContent = 'Select a product...';
+                    renderProducts();
+                    updateGenerateBtn();
                 });
             });
 
-            // Generate button
-            generateButton.addEventListener('click', generateImage);
+            document.querySelectorAll('.step-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.getElementById('step' + btn.dataset.step).classList.add('active');
+                });
+            });
+
+            document.querySelectorAll('.scene-cat-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.scene-cat-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const scenes = SCENES[btn.dataset.cat];
+                    sceneSelect.disabled = false;
+                    sceneSelect.innerHTML = '<option value="">Select scene...</option>' + scenes.map(s => `<option value="${s.value}">${s.label}</option>`).join('');
+                });
+            });
+
+            sceneSelect.addEventListener('change', () => { selectedScene = sceneSelect.value; updateGenerateBtn(); });
+            generateBtn.addEventListener('click', generateImage);
+            captionBtn.addEventListener('click', generateCaption);
+            telegramBtn.addEventListener('click', sendToTelegram);
+            document.getElementById('finalTelegram').addEventListener('click', sendToTelegram);
         }
 
-        // Generate Image
+        function updateGenerateBtn() { generateBtn.disabled = !selectedProduct || !selectedScene; }
+
+        function showStatus(el, msg, type = '') {
+            el.textContent = msg;
+            el.className = 'status-bar visible ' + type;
+        }
+
         async function generateImage() {
-            if (!selectedProduct) {
-                setStatus('error', 'נא לבחור תכשיט תחילה');
-                return;
-            }
-
-            const scene = sceneSelect.value;
-            if (!scene) {
-                setStatus('error', 'נא לבחור סצנה');
-                return;
-            }
-
-            generateButton.disabled = true;
-            generateButton.innerHTML = `<span class="button-content"><span class="loading-spinner"></span><span>מעבד...</span></span>`;
-            setStatus('loading', '⚙️ שולח פקודה ל-Make.com...');
+            if (!selectedProduct || !selectedScene) return;
+            showStatus(statusBar, '⚙️ Generating image...');
+            generateBtn.disabled = true;
 
             const payload = {
                 source: 'Web_App',
@@ -1196,89 +335,86 @@
                 product: selectedProduct.title,
                 model: selectedModel,
                 collection: selectedProduct.collection,
-                scene: scene,
-                scene_category: selectedSceneCategory,
-                aspect_ratio: aspectRatioSelect.value || '1:1',
-                creativity: creativitySelect.value || 'Medium',
-                command: 'Studio_Generate'
+                model_url: selectedProduct.modelUrl,
+                scene: selectedScene,
+                aspect_ratio: document.getElementById('aspectRatio').value,
+                command: 'Generate Image'
             };
 
             try {
-                const response = await fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    setStatus('success', '✅ הפקודה נשלחה בהצלחה!');
-                    addToRecentCreations(selectedProduct, 'pending');
-                } else {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                setStatus('error', `❌ שגיאה: ${error.message}`);
-            } finally {
-                generateButton.disabled = false;
-                generateButton.innerHTML = `<span class="button-content"><span>✨</span><span>Generate Image</span></span>`;
-            }
+                const res = await fetch(WEBHOOK_IMAGE, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (res.ok) {
+                    showStatus(statusBar, '✓ Request sent! Check Step 2 for results.', 'success');
+                    captionBtn.disabled = false;
+                    telegramBtn.disabled = false;
+                    document.getElementById('imagePlaceholder').textContent = 'Image generation in progress...';
+                    document.getElementById('resultImage').classList.add('shimmer');
+                    setTimeout(() => {
+                        document.querySelectorAll('.step-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+                        document.querySelector('[data-step="2"]').classList.add('active');
+                        document.getElementById('step2').classList.add('active');
+                    }, 1500);
+                } else { showStatus(statusBar, '✗ Error sending request', 'error'); }
+            } catch (err) { showStatus(statusBar, '✗ Network error: ' + err.message, 'error'); }
+            generateBtn.disabled = false;
+            updateGenerateBtn();
         }
 
-        // Add to Recent Creations
-        function addToRecentCreations(product, status) {
-            recentCreations.unshift({
-                image: product.image,
-                status: status,
-                timestamp: Date.now()
-            });
+        async function generateCaption() {
+            if (!selectedProduct) return;
+            const status = document.getElementById('step2Status');
+            showStatus(status, '📝 Generating marketing text...');
+            captionBtn.disabled = true;
 
-            if (recentCreations.length > 3) {
-                recentCreations.pop();
-            }
+            const payload = {
+                source: 'Web_App',
+                product_id: selectedProduct.id,
+                rowNumber: selectedProduct.rowNumber,
+                product: selectedProduct.title,
+                collection: selectedProduct.collection,
+                model_url: selectedProduct.modelUrl,
+                scene: selectedScene,
+                command: 'Generate Caption'
+            };
 
-            updateRecentGrid();
+            try {
+                const res = await fetch(WEBHOOK_CAPTION, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (res.ok) {
+                    showStatus(status, '✓ Caption request sent!', 'success');
+                    captionBox.style.display = 'block';
+                    captionText.value = 'Marketing text is being generated...';
+                    document.getElementById('finalTelegram').disabled = false;
+                } else { showStatus(status, '✗ Error generating caption', 'error'); }
+            } catch (err) { showStatus(status, '✗ Network error: ' + err.message, 'error'); }
+            captionBtn.disabled = false;
         }
 
-        // Update Recent Grid
-        function updateRecentGrid() {
-            recentGrid.innerHTML = '';
+        async function sendToTelegram() {
+            if (!selectedProduct) return;
+            const status = document.getElementById('step2Status');
+            showStatus(status, '🚀 Sending to Telegram...');
+            telegramBtn.disabled = true;
 
-            for (let i = 0; i < 3; i++) {
-                const creation = recentCreations[i];
-                if (creation) {
-                    recentGrid.innerHTML += `
-                        <div class="recent-item">
-                            <img src="${creation.image}" alt="Recent">
-                            <span class="status-dot ${creation.status}"></span>
-                        </div>
-                    `;
-                } else {
-                    recentGrid.innerHTML += `<div class="recent-item empty">ממתין...</div>`;
-                }
-            }
+            const payload = {
+                source: 'Web_App',
+                product_id: selectedProduct.id,
+                rowNumber: selectedProduct.rowNumber,
+                product: selectedProduct.title,
+                collection: selectedProduct.collection,
+                model_url: selectedProduct.modelUrl,
+                scene: selectedScene,
+                command: 'Approve & Post'
+            };
+
+            try {
+                const res = await fetch(WEBHOOK_CAPTION, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (res.ok) { showStatus(status, '✓ Sent to Telegram!', 'success'); }
+                else { showStatus(status, '✗ Error sending to Telegram', 'error'); }
+            } catch (err) { showStatus(status, '✗ Network error: ' + err.message, 'error'); }
+            telegramBtn.disabled = false;
         }
 
-        // Polling for updates
-        function startPolling() {
-            setInterval(() => {
-                // Simulate checking for completed images
-                recentCreations.forEach((creation, index) => {
-                    if (creation.status === 'pending' && Date.now() - creation.timestamp > 30000) {
-                        recentCreations[index].status = 'complete';
-                        updateRecentGrid();
-                    }
-                });
-            }, 5000);
-        }
-
-        // Set Status Message
-        function setStatus(type, message) {
-            statusMessage.className = `status-message ${type}`;
-            statusMessage.textContent = message;
-        }
-
-        // Initialize app
         init();
     </script>
 </body>
